@@ -4,6 +4,7 @@
   --third-color: #2196f3;
   --white-color: #ffffff;
   --margin-item: 30px;
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -88,6 +89,8 @@ img {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms var(--transition-function);
 }
 
 .nav-item:not(:last-child),
@@ -197,6 +200,8 @@ img {
   background-color: var(--third-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   color: var(--white-color);
+
+  transition: background-color 250ms var(--transition-function);
 }
 .hero-btn:hover,
 .hero-btn:focus {
@@ -279,7 +284,7 @@ img {
   margin-right: var(--margin-item);
 }
 
-.about-item {
+.about-image {
   position: relative;
 }
 
@@ -295,6 +300,9 @@ img {
 
 .about-caption {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   bottom: 0;
   left: 0;
   padding: 27px auto;
@@ -376,6 +384,7 @@ img {
   height: 44px;
   border-radius: 50%;
   color: #afb1b8;
+  transition: background-color 250ms var(--transition-function);
 }
 
 .social-link:hover,
@@ -383,13 +392,14 @@ img {
   background-color: var(--third-color);
 }
 
+.social-icon {
+  fill: currentColor;
+  transition: fill 250ms var(--transition-function);
+}
+
 .social-link:hover .social-icon,
 .social-link:focus .social-icon {
   fill: var(--white-color);
-}
-
-.social-icon {
-  fill: currentColor;
 }
 
 /* Постійні клієнти */
@@ -421,6 +431,8 @@ img {
   align-items: center;
   color: #afb1b8;
   fill: currentColor;
+  transition: fill 250ms var(--transition-function),
+    border-color 250ms var(--transition-function);
 }
 
 .clients-icon-link:hover,
@@ -444,6 +456,8 @@ img {
   border-radius: 4px;
   color: var(--main-color);
   background-color: #f5f4fa;
+  transition: background-color 250ms var(--transition-function),
+    color 250ms var(--transition-function);
 }
 
 .btn-padding {
@@ -457,6 +471,7 @@ img {
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
   cursor: pointer;
+  transition: box-shadow 250ms var(--transition-function);
 }
 
 .filter-item:not(:last-child) {
@@ -484,6 +499,7 @@ img {
 .project-link:hover {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+  transition: box-shadow 250ms var(--transition-function);
 }
 
 .project-content {
@@ -505,6 +521,34 @@ img {
   line-height: 1.87;
   letter-spacing: 0.03em;
   color: var(--second-color);
+}
+
+.project-overlay {
+  overflow: hidden;
+  position: relative;
+}
+
+.project-description {
+  position: absolute;
+  width: 370px;
+  height: 294px;
+  bottom: -100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--white-color);
+  transition: transform 250ms var(--transition-function);
+}
+
+.project-link:hover .project-description {
+  transform: translateY(-100%);
 }
 
 /* Підвал */
@@ -551,6 +595,7 @@ footer {
   border-radius: 50%;
   color: var(--white-color);
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 250ms var(--transition-function);
 }
 
 .footer-social-icon {
@@ -576,6 +621,7 @@ footer {
   font-size: 14px;
   line-height: 1.7;
   letter-spacing: 0.03em;
+  transition: color 250ms var(--transition-function);
 }
 
 .address-street {
@@ -597,6 +643,8 @@ footer {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms var(--transition-function),
+    visibility 250ms var(--transition-function);
 }
 
 .is-hidden {
@@ -605,15 +653,23 @@ footer {
   pointer-events: none;
 }
 
+.backdrop.is-hidden .modal {
+  transform: scale(0.1);
+}
+
 .modal {
   position: absolute;
   width: 528px;
   height: 581px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: top left;
+  transition: transform 250ms var(--transition-function);
   border-radius: 4px;
   background-color: var(--white-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .close-button {
